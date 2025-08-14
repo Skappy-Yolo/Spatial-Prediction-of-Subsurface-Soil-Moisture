@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle, Circle, AlertTriangle, Users, Calendar, Target } from "lucide-react";
+import LiveComments from "@/components/LiveComments";
 
 type Task = { name: string; completed: boolean; details: string };
 type TasksByKey = Record<string, Task>;
@@ -30,7 +31,7 @@ const ProjectDashboard = () => {
 			wp1: {
 				name: "Surface-Subsurface Analysis",
 				timeline: "Months 1-6",
-				responsible: "Primary Researcher + Technical Support",
+				responsible: "Emmanuel (Primary Researcher) + Prof. Nasem",
 				status: "not-started",
 				progress: 0,
 				tasks: {
@@ -44,7 +45,7 @@ const ProjectDashboard = () => {
 			wp2: {
 				name: "Satellite Integration",
 				timeline: "Months 6-10",
-				responsible: "Remote Sensing Specialist + Primary Researcher",
+				responsible: "Emmanuel + Prof. Nasem + Prof. Tim",
 				status: "not-started",
 				progress: 0,
 				tasks: {
@@ -58,7 +59,7 @@ const ProjectDashboard = () => {
 			wp3: {
 				name: "Spatial Prediction Development",
 				timeline: "Months 8-11",
-				responsible: "Primary Researcher + ML Specialist",
+				responsible: "Emmanuel + ML Specialist",
 				status: "not-started",
 				progress: 0,
 				tasks: {
@@ -71,7 +72,7 @@ const ProjectDashboard = () => {
 			wp4: {
 				name: "Agricultural Validation",
 				timeline: "Months 10-12",
-				responsible: "Agricultural Expert + Full Team",
+				responsible: "Full Team",
 				status: "not-started",
 				progress: 0,
 				tasks: {
@@ -89,11 +90,10 @@ const ProjectDashboard = () => {
 			{ id: 3, name: "Inadequate Spatial Extrapolation", probability: "High", impact: "Moderate", status: "active" }
 		],
 		teamMembers: [
-			{ name: "Primary Researcher", fte: 1.0, currentTasks: 4, workload: "high" },
-			{ name: "Technical Support", fte: 0.25, currentTasks: 1, workload: "low" },
-			{ name: "Remote Sensing Specialist", fte: 0.3, currentTasks: 2, workload: "medium" },
+			{ name: "Emmanuel", fte: 1.0, currentTasks: 4, workload: "high" },
+			{ name: "Prof. Nasem", fte: 0.25, currentTasks: 1, workload: "low" },
+			{ name: "Prof. Tim", fte: 0.3, currentTasks: 2, workload: "medium" },
 			{ name: "ML Specialist", fte: 0.25, currentTasks: 1, workload: "low" },
-			{ name: "Agricultural Expert", fte: 0.1, currentTasks: 1, workload: "low" }
 		]
 	});
 
@@ -225,7 +225,7 @@ const ProjectDashboard = () => {
 						{getQualityGateIcon(wp.qualityGate.passed)}
 					</button>
 				</div>
-				<p className="text-sm text-gray-600 mt-1">{wp.qualityGate.name}</p>
+                <p className="text-sm text-gray-800 dark:text-gray-100 mt-1">{wp.qualityGate.name}</p>
 				<p className="text-xs text-orange-600 mt-2">
 					<strong>Contingency:</strong> {wp.contingency}
 				</p>
@@ -369,6 +369,10 @@ const ProjectDashboard = () => {
 				{activeView === 'timeline' && <TimelineView />}
 				{activeView === 'team' && <TeamView />}
 				{activeView === 'risks' && <RiskView />}
+
+				<div className="mt-8">
+					<LiveComments channel="project" />
+				</div>
 			</div>
 		</div>
 	);
