@@ -214,10 +214,10 @@ const ProjectDashboard = () => {
 
 			<div className="border-t pt-4">
 				<div className="flex items-center justify-between">
-					<div className="flex items-center space-x-2">
-						<Target className="w-4 h-4 text-blue-600" />
-						<span className="text-sm font-medium">Quality Gate:</span>
-					</div>
+                <div className="flex items-center space-x-2">
+                    <Target className="w-4 h-4 text-blue-600" />
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100">Quality Gate:</span>
+                </div>
 					<button
 						onClick={() => toggleQualityGate(wpId)}
 						className="flex items-center space-x-2 hover:bg-gray-50 px-2 py-1 rounded"
@@ -225,7 +225,7 @@ const ProjectDashboard = () => {
 						{getQualityGateIcon(wp.qualityGate.passed)}
 					</button>
 				</div>
-                <p className="text-sm text-gray-800 dark:text-gray-100 mt-1">{wp.qualityGate.name}</p>
+                <p className="text-sm text-gray-900 dark:text-gray-100 mt-1 opacity-100">{wp.qualityGate.name}</p>
 				<p className="text-xs text-orange-600 mt-2">
 					<strong>Contingency:</strong> {wp.contingency}
 				</p>
