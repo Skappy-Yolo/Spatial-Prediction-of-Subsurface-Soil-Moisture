@@ -70,7 +70,7 @@ export default function LiveComments({ channel }: Props) {
   }
 
   return (
-    <section className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-[#111]"><!-- visible container -->
+    <section className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-[#111]">{/* visible container */}
       <h2 className="font-medium mb-3 text-black dark:text-white">Live Comments</h2>
       <div className="flex gap-2 mb-4">
         <input
