@@ -168,6 +168,14 @@ const ProjectDashboard = () => {
 		return <AlertTriangle className="w-5 h-5 text-red-600" />;
 	};
 
+	const getSeverityColor = (level: string): string => {
+		const v = level.toLowerCase();
+		if (v.includes('low')) return 'text-green-700 dark:text-green-300';
+		if (v.includes('high')) return 'text-red-600 dark:text-red-300';
+		// moderate or default
+		return 'text-amber-600 dark:text-amber-300';
+	};
+
 	const WorkPackageCard = ({ wpId, wp }: { wpId: string; wp: WorkPackage }) => (
 		<div className="bg-white rounded-lg shadow-md p-6 mb-6">
 			<div className="flex justify-between items-start mb-4">
@@ -213,7 +221,7 @@ const ProjectDashboard = () => {
 			</div>
 
 				<div className="border-t pt-4">
-					<div className="rounded border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0f0f0f] p-3" style={{opacity:1}}>
+					<div className="rounded border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-[#0f0f0f] p-3" style={{opacity:1}}>
 						<div className="flex items-center justify-between">
 							<div className="flex items-center space-x-2">
 								<Target className="w-4 h-4 text-blue-600" />
@@ -315,11 +323,11 @@ const ProjectDashboard = () => {
 						<div className="grid grid-cols-2 gap-4 text-sm">
 							<div className="rounded bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 px-2 py-1 inline-flex gap-1">
 								<span className="text-black dark:text-white">Probability:</span>
-								<span className="font-semibold text-black dark:text-white">{risk.probability}</span>
+								<span className={`font-semibold ${getSeverityColor(risk.probability)}`}>{risk.probability}</span>
 							</div>
 							<div className="rounded bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 px-2 py-1 inline-flex gap-1">
 								<span className="text-black dark:text-white">Impact:</span>
-								<span className="font-semibold text-black dark:text-white">{risk.impact}</span>
+								<span className={`font-semibold ${getSeverityColor(risk.impact)}`}>{risk.impact}</span>
 							</div>
 						</div>
 					</div>
