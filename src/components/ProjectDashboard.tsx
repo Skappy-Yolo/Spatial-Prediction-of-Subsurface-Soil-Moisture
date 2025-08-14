@@ -216,7 +216,7 @@ const ProjectDashboard = () => {
 				<div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                     <Target className="w-4 h-4 text-blue-600" />
-                    <span className="text-sm font-medium text-black dark:text-white">Quality Gate:</span>
+                    <span className="text-sm font-medium text-black dark:text-white opacity-100">Quality Gate:</span>
                 </div>
 					<button
 						onClick={() => toggleQualityGate(wpId)}
@@ -225,7 +225,7 @@ const ProjectDashboard = () => {
 						{getQualityGateIcon(wp.qualityGate.passed)}
 					</button>
 				</div>
-                <p className="text-sm text-black dark:text-white mt-1">{wp.qualityGate.name}</p>
+                <p className="text-sm text-black dark:text-white opacity-100 mt-1">{wp.qualityGate.name}</p>
 				<p className="text-xs text-orange-600 mt-2">
 					<strong>Contingency:</strong> {wp.contingency}
 				</p>
@@ -312,12 +312,12 @@ const ProjectDashboard = () => {
 						</div>
                         <div className="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                            <span className="text-black dark:text-white">Probability:</span>
-                            <span className="ml-1 font-semibold text-black dark:text-white">{risk.probability}</span>
+                            <span className="text-black dark:text-white opacity-100">Probability:</span>
+                            <span className="ml-1 font-semibold text-black dark:text-white opacity-100">{risk.probability}</span>
                         </div>
                         <div>
-                            <span className="text-black dark:text-white">Impact:</span>
-                            <span className="ml-1 font-semibold text-black dark:text-white">{risk.impact}</span>
+                            <span className="text-black dark:text-white opacity-100">Impact:</span>
+                            <span className="ml-1 font-semibold text-black dark:text-white opacity-100">{risk.impact}</span>
                         </div>
                         </div>
 					</div>
