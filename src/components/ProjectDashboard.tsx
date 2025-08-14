@@ -310,16 +310,16 @@ const ProjectDashboard = () => {
 								{risk.status.toUpperCase()}
 							</div>
 						</div>
-						<div className="grid grid-cols-2 gap-4 text-sm">
-						<div>
-							<span className="text-gray-600">Probability:</span>
-							<span className="ml-1 font-semibold text-gray-800 dark:text-gray-100">{risk.probability}</span>
-						</div>
-						<div>
-							<span className="text-gray-600">Impact:</span>
-							<span className="ml-1 font-semibold text-gray-800 dark:text-gray-100">{risk.impact}</span>
-						</div>
-						</div>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span className="text-black dark:text-white">Probability:</span>
+                            <span className="ml-1 font-semibold text-black dark:text-white">{risk.probability}</span>
+                        </div>
+                        <div>
+                            <span className="text-black dark:text-white">Impact:</span>
+                            <span className="ml-1 font-semibold text-black dark:text-white">{risk.impact}</span>
+                        </div>
+                        </div>
 					</div>
 				))}
 			</div>

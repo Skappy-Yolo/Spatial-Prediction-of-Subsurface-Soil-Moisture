@@ -70,11 +70,11 @@ export default function LiveComments({ channel }: Props) {
   }
 
   return (
-    <section className="border rounded-lg p-4">
+    <section className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-[#111]"><!-- visible container -->
       <h2 className="font-medium mb-3 text-black dark:text-white">Live Comments</h2>
       <div className="flex gap-2 mb-4">
         <input
-          className="flex-1 rounded border px-3 py-2 text-sm bg-transparent text-black dark:text-white placeholder:text-gray-500"
+          className="flex-1 rounded border border-gray-300 dark:border-gray-700 px-3 py-2 text-sm bg-white dark:bg-[#111] text-black dark:text-white placeholder:text-gray-500"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Share feedback..."
@@ -90,7 +90,7 @@ export default function LiveComments({ channel }: Props) {
       ) : (
         <ul className="space-y-3">
           {comments.map((c) => (
-            <li key={c.id} className="border rounded p-3">
+            <li key={c.id} className="border border-gray-300 dark:border-gray-700 rounded p-3 bg-white dark:bg-[#111]">
               <div className="text-xs text-gray-600 dark:text-gray-300 mb-1">
                 {c.author} • {new Date(c.created_at).toLocaleString()}
               </div>
