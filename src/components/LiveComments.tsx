@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type RealtimePostgresInsertPayload } from "@supabase/supabase-js";
 
 type CommentRow = {
   id: string;
@@ -19,13 +19,16 @@ export default function LiveComments({ channel }: Props) {
   const [comments, setComments] = useState<CommentRow[]>([]);
   const [input, setInput] = useState("");
   const supabase = useMemo(() => {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-    const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (typeof window === "undefined") return null as unknown as ReturnType<typeof createClient>;
+    if (!url || !anon) return null as unknown as ReturnType<typeof createClient>;
     return createClient(url, anon);
   }, []);
 
   useEffect(() => {
     let active = true;
+    if (!supabase) return () => {};
     async function load() {
       const { data } = await supabase
         .from("comments")
@@ -42,7 +45,7 @@ export default function LiveComments({ channel }: Props) {
       .on(
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "comments", filter: `channel=eq.${channel}` },
-        (payload: any) => {
+        (payload: RealtimePostgresInsertPayload<CommentRow>) => {
           setComments((prev) => [payload.new as CommentRow, ...prev].slice(0, 50));
         }
       )
@@ -50,13 +53,14 @@ export default function LiveComments({ channel }: Props) {
 
     return () => {
       active = false;
-      supabase.removeChannel(sub);
+      supabase?.removeChannel(sub);
     };
   }, [channel, supabase]);
 
   async function addComment() {
     const text = input.trim();
     if (!text) return;
+    if (!supabase) return;
     await supabase.from("comments").insert({
       channel,
       author: "Guest",
@@ -79,7 +83,9 @@ export default function LiveComments({ channel }: Props) {
           Send
         </button>
       </div>
-      {comments.length === 0 ? (
+      {!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? (
+        <p className="text-sm text-gray-500">Realtime disabled. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.</p>
+      ) : comments.length === 0 ? (
         <p className="text-sm text-gray-500">No comments yet.</p>
       ) : (
         <ul className="space-y-3">
