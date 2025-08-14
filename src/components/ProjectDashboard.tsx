@@ -212,24 +212,26 @@ const ProjectDashboard = () => {
 				))}
 			</div>
 
-			<div className="border-t pt-4">
-				<div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                    <Target className="w-4 h-4 text-blue-600" />
-                    <span className="text-sm font-medium text-black dark:text-white opacity-100">Quality Gate:</span>
-                </div>
-					<button
-						onClick={() => toggleQualityGate(wpId)}
-						className="flex items-center space-x-2 hover:bg-gray-50 px-2 py-1 rounded"
-					>
-						{getQualityGateIcon(wp.qualityGate.passed)}
-					</button>
+				<div className="border-t pt-4">
+					<div className="rounded border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0f0f0f] p-3" style={{opacity:1}}>
+						<div className="flex items-center justify-between">
+							<div className="flex items-center space-x-2">
+								<Target className="w-4 h-4 text-blue-600" />
+								<span className="text-sm font-medium text-black dark:text-white">Quality Gate:</span>
+							</div>
+							<button
+								onClick={() => toggleQualityGate(wpId)}
+								className="flex items-center space-x-2 hover:bg-gray-50 dark:hover:bg-[#151515] px-2 py-1 rounded"
+							>
+								{getQualityGateIcon(wp.qualityGate.passed)}
+							</button>
+						</div>
+						<p className="text-sm text-black dark:text-white mt-1">{wp.qualityGate.name}</p>
+					</div>
+					<p className="text-xs text-orange-600 mt-2">
+						<strong>Contingency:</strong> {wp.contingency}
+					</p>
 				</div>
-                <p className="text-sm text-black dark:text-white opacity-100 mt-1">{wp.qualityGate.name}</p>
-				<p className="text-xs text-orange-600 mt-2">
-					<strong>Contingency:</strong> {wp.contingency}
-				</p>
-			</div>
 		</div>
 	);
 
@@ -310,16 +312,16 @@ const ProjectDashboard = () => {
 								{risk.status.toUpperCase()}
 							</div>
 						</div>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <span className="text-black dark:text-white opacity-100">Probability:</span>
-                            <span className="ml-1 font-semibold text-black dark:text-white opacity-100">{risk.probability}</span>
-                        </div>
-                        <div>
-                            <span className="text-black dark:text-white opacity-100">Impact:</span>
-                            <span className="ml-1 font-semibold text-black dark:text-white opacity-100">{risk.impact}</span>
-                        </div>
-                        </div>
+						<div className="grid grid-cols-2 gap-4 text-sm">
+							<div className="rounded bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 px-2 py-1 inline-flex gap-1">
+								<span className="text-black dark:text-white">Probability:</span>
+								<span className="font-semibold text-black dark:text-white">{risk.probability}</span>
+							</div>
+							<div className="rounded bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 px-2 py-1 inline-flex gap-1">
+								<span className="text-black dark:text-white">Impact:</span>
+								<span className="font-semibold text-black dark:text-white">{risk.impact}</span>
+							</div>
+						</div>
 					</div>
 				))}
 			</div>
