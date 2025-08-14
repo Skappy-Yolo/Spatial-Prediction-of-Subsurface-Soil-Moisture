@@ -71,10 +71,10 @@ export default function LiveComments({ channel }: Props) {
 
   return (
     <section className="border rounded-lg p-4">
-      <h2 className="font-medium mb-3">Live Comments</h2>
+      <h2 className="font-medium mb-3 text-black dark:text-white">Live Comments</h2>
       <div className="flex gap-2 mb-4">
         <input
-          className="flex-1 rounded border px-3 py-2 text-sm bg-transparent"
+          className="flex-1 rounded border px-3 py-2 text-sm bg-transparent text-black dark:text-white placeholder:text-gray-500"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Share feedback..."
@@ -84,17 +84,17 @@ export default function LiveComments({ channel }: Props) {
         </button>
       </div>
       {!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? (
-        <p className="text-sm text-gray-500">Realtime disabled. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.</p>
+        <p className="text-sm text-gray-700 dark:text-gray-300">Realtime disabled. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.</p>
       ) : comments.length === 0 ? (
-        <p className="text-sm text-gray-500">No comments yet.</p>
+        <p className="text-sm text-gray-700 dark:text-gray-300">No comments yet.</p>
       ) : (
         <ul className="space-y-3">
           {comments.map((c) => (
             <li key={c.id} className="border rounded p-3">
-              <div className="text-xs text-gray-500 mb-1">
+              <div className="text-xs text-gray-600 dark:text-gray-300 mb-1">
                 {c.author} • {new Date(c.created_at).toLocaleString()}
               </div>
-              <div className="text-sm whitespace-pre-wrap">{c.message}</div>
+              <div className="text-sm whitespace-pre-wrap text-black dark:text-white">{c.message}</div>
             </li>
           ))}
         </ul>
